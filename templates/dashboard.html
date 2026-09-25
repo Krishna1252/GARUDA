@@ -1,0 +1,9 @@
+{% extends "base.html" %}{% block content %}
+<section class="hero"><div><p class="eyebrow">SMART GARAGE MANAGEMENT</p><h1>Garage Analytics & Retention</h1>
+<p>Centralized records, service analytics, retention insights and reminders in one platform.</p></div><a class="btn" href="/services">Add Service</a></section>
+<div class="cards"><div class="card"><small>Customers</small><b>{{customers}}</b></div><div class="card"><small>Vehicles</small><b>{{vehicles}}</b></div>
+<div class="card"><small>Services</small><b>{{services}}</b></div><div class="card"><small>Total Revenue</small><b>₹{{"%.0f"|format(revenue)}}</b></div></div>
+<section class="panel"><div class="section-title"><h2>Upcoming Service Reminders</h2><span>Next 15 days</span></div>
+{% if upcoming %}<table><tr><th>Customer</th><th>Vehicle</th><th>Service</th><th>Next Service</th><th>Amount</th></tr>
+{% for x in upcoming %}<tr><td>{{x.name}}</td><td>{{x.number}}</td><td>{{x.service_type}}</td><td>{{x.next_service}}</td><td>₹{{"%.0f"|format(x.amount)}}</td></tr>{% endfor %}</table>
+{% else %}<div class="empty">No upcoming reminders.</div>{% endif %}</section>{% endblock %}

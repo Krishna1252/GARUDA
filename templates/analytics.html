@@ -1,0 +1,8 @@
+{% extends "base.html" %}{% block content %}<div class="page-head"><div><p class="eyebrow">DATA-DRIVEN INSIGHTS</p><h1>Analytics Dashboard</h1></div></div>
+<section class="chart-grid"><div class="panel"><h2>Monthly Service & Revenue</h2><canvas id="monthly"></canvas></div><div class="panel"><h2>Service Types</h2><canvas id="types"></canvas></div></section>
+<script>
+const months={{monthly|map(attribute='month')|list|tojson}},counts={{monthly|map(attribute='count')|list|tojson}},revenue={{monthly|map(attribute='revenue')|list|tojson}};
+new Chart(document.getElementById('monthly'),{type:'bar',data:{labels:months,datasets:[{label:'Services',data:counts},{label:'Revenue',data:revenue}]},options:{responsive:true}});
+const labels={{types|map(attribute='service_type')|list|tojson}},vals={{types|map(attribute='count')|list|tojson}};
+new Chart(document.getElementById('types'),{type:'doughnut',data:{labels:labels,datasets:[{data:vals}]},options:{responsive:true}});
+</script>{% endblock %}

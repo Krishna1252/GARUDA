@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block content %}<div class="page-head"><div><p class="eyebrow">CUSTOMER RETENTION</p><h1>Retention Insights</h1><p>Rule-based prototype classification using service activity.</p></div></div>
+<section class="panel"><table><tr><th>Customer</th><th>Services</th><th>Last Service</th><th>Status</th><th>Action</th></tr>
+{% for c in customers %}<tr><td>{{c.name}}</td><td>{{c.service_count}}</td><td>{{c.last_service or "No record"}}</td><td><span class="status {{'risk' if c.status=='At Risk' else 'active'}}">{{c.status}}</span></td>
+<td>{% if c.status=='At Risk' %}<button class="small-btn" onclick="alert('Follow-up reminder prepared for {{c.name}}')">Follow Up</button>{% else %}Monitor{% endif %}</td></tr>{% endfor %}</table></section>{% endblock %}
